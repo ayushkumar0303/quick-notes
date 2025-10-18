@@ -1,5 +1,5 @@
 import { handleLoginClick } from "./Navbar";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuthStore } from "@/store/useAuthStore";
 
 function Home() {
@@ -20,9 +20,11 @@ function Home() {
           Login
         </button>
       ) : (
-        <button className="p-4 border-1 h-0.5 flex justify-center items-center rounded-sm  bg-blue-500 hover:bg-blue-600 cursor-pointer text-white">
-          Dashboard
-        </button>
+        <Link to="/dashboard">
+          <button className="p-4 border-1 h-0.5 flex justify-center items-center rounded-sm  bg-blue-500 hover:bg-blue-600 cursor-pointer text-white">
+            Dashboard
+          </button>
+        </Link>
       )}
     </div>
   );

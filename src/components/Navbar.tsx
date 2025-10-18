@@ -2,20 +2,14 @@ import { auth } from "@/firebase";
 import { useAuthStore } from "@/store/useAuthStore";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
-import { useNavigate, type NavigateFunction } from "react-router";
+import { Link, useNavigate, type NavigateFunction } from "react-router";
 
 function Navbar() {
   const navigate = useNavigate();
-  const { user, setUser } = useAuthStore();
+  const { user } = useAuthStore();
 
-  const handleLogoutClick = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleLogoutClick = async () => {
+    await signOut(auth);
   };
 
   return (
@@ -37,9 +31,11 @@ function Navbar() {
           >
             Logout
           </button>
-          <button className="p-4 border-1 flex h-1 items-center justify-center rounded-sm bg-blue-500 hover:bg-blue-600 text-white cursor-pointer">
-            Dashboard
-          </button>
+          <Link to="/dashboard">
+            <button className="p-4 border-1 flex h-1 items-center justify-center rounded-sm bg-blue-500 hover:bg-blue-600 text-white cursor-pointer">
+              Dashboard
+            </button>
+          </Link>
         </div>
       )}
     </div>
@@ -53,6 +49,7 @@ export const handleLoginClick = async (navigate: NavigateFunction) => {
 
   try {
     const result = await signInWithPopup(auth, provider);
+    // setUser(result.user);
     const res = await fetch("/server/auth/google", {
       method: "POST",
       headers: {
