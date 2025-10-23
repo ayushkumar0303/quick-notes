@@ -31,11 +31,6 @@ function Navbar() {
           >
             Logout
           </button>
-          <Link to="/dashboard">
-            <button className="p-4 border-1 flex h-1 items-center justify-center rounded-sm bg-blue-500 hover:bg-blue-600 text-white cursor-pointer">
-              Dashboard
-            </button>
-          </Link>
         </div>
       )}
     </div>
