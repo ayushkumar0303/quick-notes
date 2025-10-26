@@ -1,12 +1,24 @@
 import { auth } from "@/firebase";
 import { useAuthStore } from "@/store/useAuthStore";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { useEffect, useRef, useState } from "react";
 
-import { Link, useNavigate, type NavigateFunction } from "react-router";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  type NavigateFunction,
+} from "react-router";
 
 function Navbar() {
   const navigate = useNavigate();
   const { user } = useAuthStore();
+  const [path, setPath] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    setPath(location.pathname);
+  }, [location]);
 
   const handleLogoutClick = async () => {
     await signOut(auth);
@@ -25,6 +37,14 @@ function Navbar() {
         </button>
       ) : (
         <div className="flex gap-2 items-center">
+          <Link
+            to="/"
+            className={
+              path === "/" ? "underline text-sm text-blue-500" : "text-sm"
+            }
+          >
+            Home
+          </Link>
           <button
             className="p-3 border-1 h-0.5 flex justify-center items-center rounded-sm hover:bg-gray-100 cursor-pointer"
             onClick={handleLogoutClick}

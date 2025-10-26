@@ -6,7 +6,7 @@ function Home() {
   const navigate = useNavigate();
   const { user } = useAuthStore();
   return (
-    <div className="flex flex-col gap-2 justify-center items-center h-[calc(100vh-64px)]">
+    <div className="flex flex-col m-10 gap-2 justify-center items-center h-[calc(100vh-112px)]  border-1 p-6 shadow-md rounded-lg">
       <div className="text-xl font-bold ">TaskMaster</div>
       <div className="text-2xl font-bold">Welcome to TaskMaster</div>
       <p className="font-extralight mt-[-5px]">

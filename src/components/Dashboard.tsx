@@ -1,20 +1,18 @@
+import TaskCard from "./TaskCard";
+import { Button } from "./ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "./ui/card";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { Label } from "./ui/label";
-import TaskCard from "./TaskCard";
 
 function Dashboard() {
   return (
-    <div className="flex justify-between m-10 gap-10 h-[calc(100vh-64px)]">
+    <div className="flex justify-between m-10 gap-10 h-[calc(100vh-112px)] border-1 p-6 shadow-md rounded-lg">
       <div className="w-1/2">
         <Card className="w-full max-w-sm">
           <CardHeader>
@@ -53,8 +51,12 @@ function Dashboard() {
         </Card>
       </div>
       <div className="w-1/2">
-        <p>Your Task</p>
-        <TaskCard />
+        <p className="font-bold mb-5">Your Task</p>
+        <div className="flex flex-col gap-3">
+          <TaskCard />
+          <TaskCard />
+          <TaskCard />
+        </div>
       </div>
     </div>
   );
